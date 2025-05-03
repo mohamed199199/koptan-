@@ -39,7 +39,13 @@
 """, unsafe_allow_html=True)
         
         .card:hover {
+        st.markdown("""
+    <style>
+        .card {
             transform: translateY(-5px);
+        }
+    </style>
+""", unsafe_allow_html=True)
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
