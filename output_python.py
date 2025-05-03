@@ -231,7 +231,7 @@
             useHalfPrecision: true,
             useAMP: true,
             useONNX: false, // Will be set based on browser compatibility
-            sampleRate: 24000, // 24kHz for OPUS output
+            sampleRate: 24000,  # 24kHz for OPUS output
             formantShiftFactor: 0.8, // Default formant shift
             pitchShiftSteps: 3, // Default pitch shift (steps)
             enhancementLevel: 0.5, // Voice enhancement level
