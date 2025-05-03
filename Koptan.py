@@ -30,9 +30,13 @@
             color: #fff;
         }
         
+        st.markdown("""
+    <style>
         .card {
             transition: all 0.3s ease;
         }
+    </style>
+""", unsafe_allow_html=True)
         
         .card:hover {
             transform: translateY(-5px);
