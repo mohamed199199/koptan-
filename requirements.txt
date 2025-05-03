@@ -5,9 +5,5 @@ scipy
 torch
 torchvision
 tensorflow
-pydub
 librosa
-soundfile
-ffmpeg
 requests
-sounddevice
