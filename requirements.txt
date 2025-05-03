@@ -10,4 +10,4 @@ librosa
 soundfile
 ffmpeg
 requests
-pyngrok
+
