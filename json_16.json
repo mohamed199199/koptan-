@@ -1,0 +1,4 @@
+            }
+            
+            // Simulate successful link submission
+            trainedSampleName.textContent = `تم اختيار: ملف من جوجل درايف`;

@@ -1,0 +1,11 @@
+        }
+        
+        .dark body {
+            background-color: #181818;
+            color: #fff;
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+        }
+        

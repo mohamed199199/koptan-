@@ -1,0 +1,8 @@
+                }
+                
+                progressBar.style.width = `${progress}%`;
+                progressPercentage.textContent = `${Math.round(progress)}%`;
+                
+                // Calculate remaining time
+                if (progress < 100) {
+                    const secondsRemaining = Math.ceil((100 - progress) * totalSeconds / 100);

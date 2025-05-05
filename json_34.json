@@ -1,0 +1,8 @@
+                            }
+                        }
+                    })();
+                } else {
+                    // Fall back to regular download for browsers without File System Access API
+                    downloadConverted();
+                }
+            } catch (err) {

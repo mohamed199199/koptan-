@@ -1,0 +1,33 @@
+            }
+        });
+    </script>
+
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-primary mb-2">تحويل الصوت من بنت إلى ولد</h1>
+            <p class="text-gray-600 dark:text-gray-400">RVC/So-VITS-SVC تقنية</p>
+        </header>
+
+        <div class="grid grid-cols-1 gap-8">
+            <!-- Section 1: Trained Sample -->
+            <div class="card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-bold mb-6 text-primary flex items-center">
+                    <i class="fas fa-upload ml-2"></i>
+                    <span>رفع العينة المدربة</span>
+                </h2>
+                
+                <div class="space-y-4">
+                    <div class="relative">
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2">رابط العينة من جوجل درايف</label>
+                        <div class="flex">
+                            <input type="text" id="driveLink" 
+                                class="flex-1 text-base border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-r-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary" 
+                                placeholder="ادخل رابط العينة المدربة من جوجل درايف">
+                            <button id="submitDriveLink" class="bg-primary text-white p-3 rounded-l-lg hover:bg-opacity-90 transition">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2">أو قم بتحميل العينة من جهازك</label>

@@ -1,0 +1,20 @@
+            }
+        };
+        
+        // Event Listeners
+        trainedSampleUpload.addEventListener('change', handleTrainedSampleUpload);
+        audioSampleUpload.addEventListener('change', handleAudioSampleUpload);
+        recordAudioBtn.addEventListener('click', toggleRecording);
+        selectAudioFileBtn.addEventListener('click', simulateFileSelect);
+        playOriginalBtn.addEventListener('click', togglePlayOriginal);
+        playConvertedBtn.addEventListener('click', togglePlayConverted);
+        convertToOpusBtn.addEventListener('click', startConversion);
+        conversionDegree.addEventListener('input', updateConversionDegree);
+        downloadConvertedBtn.addEventListener('click', downloadConverted);
+        shareConvertedBtn.addEventListener('click', shareConverted);
+        saveConvertedBtn.addEventListener('click', saveConverted);
+        submitDriveLink.addEventListener('click', handleDriveLink);
+        
+        // Check GPU support on load
+        window.addEventListener('load', () => {
+            const hasGPU = checkGPUSupport();

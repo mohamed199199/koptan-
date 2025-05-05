@@ -1,0 +1,7 @@
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen">
+    <!-- Dark mode detection -->
+    <script>
