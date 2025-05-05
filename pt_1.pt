@@ -1,0 +1,176 @@
+                        <input type="file" id="trainedSampleUpload" class="hide-file-input" accept=".pth,.pkl,.zip,.rar">
+                        <label for="trainedSampleUpload" class="flex items-center justify-center w-full p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <i class="fas fa-file-upload text-2xl text-primary ml-2"></i>
+                            <span class="text-gray-700 dark:text-gray-300">اختر ملف العينة المدربة</span>
+                        </label>
+                        <div id="trainedSampleName" class="mt-2 text-gray-600 dark:text-gray-400 hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Sample to Convert -->
+            <div class="card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-bold mb-6 text-primary flex items-center">
+                    <i class="fas fa-music ml-2"></i>
+                    <span>العينة المطلوب تحويلها</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <button id="recordAudio" class="w-full flex items-center justify-center bg-primary text-white p-4 rounded-lg hover:bg-opacity-90 transition icon-btn">
+                            <i class="fas fa-microphone text-xl ml-2"></i>
+                            <span>تسجيل صوتي</span>
+                        </button>
+                        
+                        <input type="file" id="audioSampleUpload" class="hide-file-input" accept="audio/*">
+                        <label for="audioSampleUpload" class="flex items-center justify-center w-full p-4 border-2 border-primary rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <i class="fas fa-file-audio text-xl text-primary ml-2"></i>
+                            <span>رفع عينة صوتية</span>
+                        </label>
+                        
+                        <button id="selectAudioFile" class="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white p-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition icon-btn">
+                            <i class="fas fa-folder-open text-xl ml-2"></i>
+                            <span>تحديد ملف صوتي</span>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div id="audioFileInfo" class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg hidden">
+                            <h4 class="font-bold mb-2">معلومات الملف</h4>
+                            <p id="fileName" class="text-sm mb-1">اسم الملف: <span></span></p>
+                            <p id="fileFormat" class="text-sm mb-1">الصيغة: <span></span></p>
+                            <p id="fileSize" class="text-sm">الحجم: <span></span></p>
+                        </div>
+                        
+                        <div id="audioControls" class="space-y-4 hidden">
+                            <div class="flex justify-between items-center">
+                                <button id="playOriginal" class="flex items-center justify-center bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition icon-btn">
+                                    <i class="fas fa-play ml-2"></i>
+                                    <span>الاستماع قبل التحويل</span>
+                                </button>
+                                <div id="originalTime" class="text-xl font-mono font-bold text-primary">00:00</div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <button id="playConverted" class="flex items-center justify-center bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition icon-btn disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    <i class="fas fa-play ml-2"></i>
+                                    <span>الاستماع بعد التحويل</span>
+                                </button>
+                                <div id="convertedTime" class="text-xl font-mono font-bold text-primary">00:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Conversion Settings -->
+            <div class="card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-bold mb-6 text-primary flex items-center">
+                    <i class="fas fa-sliders-h ml-2"></i>
+                    <span>إعدادات التحويل</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-6">
+                        <button id="convertToOpus" class="w-full flex items-center justify-center bg-primary text-white p-4 rounded-lg hover:bg-opacity-90 transition icon-btn disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            <i class="fas fa-exchange-alt text-xl ml-2"></i>
+                            <span>تحويل إلى صيغة OPUS</span>
+                        </button>
+                        
+                        <div>
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2 flex justify-between">
+                                <span>درجة التحويل: <span id="conversionDegreeValue">15</span></span>
+                            </label>
+                            <input type="range" id="conversionDegree" min="1" max="30" value="15" 
+                                class="w-full h-2 bg-gray-300 dark:bg-gray-700 rounded-full appearance-none cursor-pointer">
+                        </div>
+                        
+                        <div id="conversionProgress" class="hidden">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2 flex justify-between">
+                                <span>تقدم التحويل</span>
+                                <span id="progressPercentage">0%</span>
+                            </label>
+                            <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
+                                <div id="progressBar" class="h-full bg-primary transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <p id="remainingTime" class="text-sm text-gray-600 dark:text-gray-400 mt-1 text-center">الوقت المتبقي: --:--</p>
+                        </div>
+                    </div>
+                    
+                    <div id="conversionActions" class="space-y-4 opacity-50 pointer-events-none">
+                        <button id="downloadConverted" class="w-full flex items-center justify-center bg-green-500 text-white p-4 rounded-lg hover:bg-green-600 transition icon-btn">
+                            <i class="fas fa-download text-xl ml-2"></i>
+                            <span>تحميل العينة المحولة</span>
+                        </button>
+                        
+                        <button id="shareConverted" class="w-full flex items-center justify-center bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition icon-btn">
+                            <i class="fas fa-share-alt text-xl ml-2"></i>
+                            <span>مشاركة العينة المحولة</span>
+                        </button>
+                        
+                        <button id="saveConverted" class="w-full flex items-center justify-center bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 transition icon-btn">
+                            <i class="fas fa-save text-xl ml-2"></i>
+                            <span>حفظ العينة في موقع محدد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const trainedSampleUpload = document.getElementById('trainedSampleUpload');
+        const trainedSampleName = document.getElementById('trainedSampleName');
+        const audioSampleUpload = document.getElementById('audioSampleUpload');
+        const recordAudioBtn = document.getElementById('recordAudio');
+        const selectAudioFileBtn = document.getElementById('selectAudioFile');
+        const audioFileInfo = document.getElementById('audioFileInfo');
+        const fileName = document.getElementById('fileName').querySelector('span');
+        const fileFormat = document.getElementById('fileFormat').querySelector('span');
+        const fileSize = document.getElementById('fileSize').querySelector('span');
+        const audioControls = document.getElementById('audioControls');
+        const playOriginalBtn = document.getElementById('playOriginal');
+        const playConvertedBtn = document.getElementById('playConverted');
+        const originalTime = document.getElementById('originalTime');
+        const convertedTime = document.getElementById('convertedTime');
+        const convertToOpusBtn = document.getElementById('convertToOpus');
+        const conversionDegree = document.getElementById('conversionDegree');
+        const conversionDegreeValue = document.getElementById('conversionDegreeValue');
+        const conversionProgress = document.getElementById('conversionProgress');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercentage = document.getElementById('progressPercentage');
+        const remainingTime = document.getElementById('remainingTime');
+        const conversionActions = document.getElementById('conversionActions');
+        const downloadConvertedBtn = document.getElementById('downloadConverted');
+        const shareConvertedBtn = document.getElementById('shareConverted');
+        const saveConvertedBtn = document.getElementById('saveConverted');
+        const driveLinkInput = document.getElementById('driveLink');
+        const submitDriveLink = document.getElementById('submitDriveLink');
+        
+        // Variables
+        let originalAudio = null;
+        let convertedAudio = null;
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let isRecording = false;
+        let trainedSampleFile = null;
+        let conversionSimulation = null;
+        let originalAudioElement = new Audio();
+        let convertedAudioElement = new Audio();
+        
+        // GPU Acceleration settings
+        const gpuAcceleration = {
+            enabled: true,
+            useHalfPrecision: true,
+            useAMP: true,
+            useONNX: false, // Will be set based on browser compatibility
+            sampleRate: 24000, // 24kHz for OPUS output
+            formantShiftFactor: 0.8, // Default formant shift
+            pitchShiftSteps: 3, // Default pitch shift (steps)
+            enhancementLevel: 0.5, // Voice enhancement level
+            noiseReduction: true,
+            dynamicCompression: true
+        };
+        
+        // Check for WebGL support as a proxy for GPU capability

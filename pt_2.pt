@@ -1,0 +1,4 @@
+            trainedSampleFile = { name: 'google-drive-sample.pth', size: '250MB' };
+            
+            // Enable conversion button if both samples are ready
+            checkEnableConversion();
