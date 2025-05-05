@@ -1,0 +1,1 @@
+            trainedSampleName.classList.remove('hidden');
