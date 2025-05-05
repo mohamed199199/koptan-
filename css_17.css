@@ -1,0 +1,5 @@
+                return { success: true };
+            },
+            
+            normalize(audio) {
+                // Simulate loudness normalization

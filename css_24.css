@@ -1,0 +1,8 @@
+            const url = URL.createObjectURL(new Blob([convertedAudio], { type: 'audio/opus' }));
+            convertedAudioElement.src = url;
+            convertedTime.textContent = originalTime.textContent; // Same duration as original
+            
+            // Cleanup
+            convertedAudioElement.onload = () => {
+                URL.revokeObjectURL(url);
+            };

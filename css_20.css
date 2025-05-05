@@ -1,0 +1,1 @@
+            trainedSampleName.textContent = `تم اختيار: ${file.name}`;

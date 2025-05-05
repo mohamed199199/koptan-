@@ -1,0 +1,23 @@
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                
+                mediaRecorder.addEventListener('dataavailable', e => {
+                    if (e.data.size > 0) recordedChunks.push(e.data);
+                });
+                
+                mediaRecorder.addEventListener('stop', () => {
+                    const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+                    const file = new File([audioBlob], 'recorded-audio.webm', { type: 'audio/webm' });
+                    originalAudio = file;
+                    displayFileInfo(file);
+                    createAudioPreview(file);
+                    
+                    // Enable conversion button if both samples are ready
+                    checkEnableConversion();
+                    
+                    // Stop all tracks to release the microphone
+                    stream.getTracks().forEach(track => track.stop());
+                });
+                
+                mediaRecorder.start();
+            } catch (err) {

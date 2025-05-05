@@ -1,0 +1,15 @@
+            console.log("Starting conversion with settings:", {
+                useGPU: gpuAcceleration.enabled,
+                halfPrecision: gpuAcceleration.useHalfPrecision,
+                useAMP: gpuAcceleration.useAMP,
+                useONNX: gpuAcceleration.useONNX,
+                sampleRate: gpuAcceleration.sampleRate,
+                pitchShift: gpuAcceleration.pitchShiftSteps,
+                formantShift: gpuAcceleration.formantShiftFactor,
+                enhancementLevel: gpuAcceleration.enhancementLevel,
+                noiseReduction: gpuAcceleration.noiseReduction,
+                compression: gpuAcceleration.dynamicCompression
+            });
+            
+            // Simulate the voice conversion pipeline
+            setTimeout(() => {

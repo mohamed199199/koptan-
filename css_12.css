@@ -1,0 +1,3 @@
+            rvc: {
+                convert(features, settings) {
+                    // Simulate RVC conversion with GPU acceleration

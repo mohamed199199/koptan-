@@ -1,0 +1,59 @@
+            const url = URL.createObjectURL(new Blob([convertedAudio], { type: 'audio/opus' }));
+            
+            // Create intent URL for common messaging apps
+            const intentUrls = {
+                whatsapp: `whatsapp://send?text=العينة الصوتية المحولة ${encodeURIComponent(url)}`,
+                telegram: `tg://msg?text=العينة الصوتية المحولة ${encodeURIComponent(url)}`,
+                facebook: `fb-messenger://share/?link=${encodeURIComponent(url)}`
+            };
+            
+            // Create sharing options
+            const shareDiv = document.createElement('div');
+            shareDiv.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            shareDiv.innerHTML = `
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl max-w-sm mx-auto">
+                    <h3 class="text-lg font-bold mb-4 text-gray-800 dark:text-white">مشاركة العينة الصوتية</h3>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <button class="whatsapp flex flex-col items-center p-3 rounded-lg bg-green-100 hover:bg-green-200">
+                            <i class="fab fa-whatsapp text-2xl text-green-600 mb-1"></i>
+                            <span class="text-sm">واتساب</span>
+                        </button>
+                        <button class="telegram flex flex-col items-center p-3 rounded-lg bg-blue-100 hover:bg-blue-200">
+                            <i class="fab fa-telegram text-2xl text-blue-600 mb-1"></i>
+                            <span class="text-sm">تليجرام</span>
+                        </button>
+                        <button class="messenger flex flex-col items-center p-3 rounded-lg bg-indigo-100 hover:bg-indigo-200">
+                            <i class="fab fa-facebook-messenger text-2xl text-indigo-600 mb-1"></i>
+                            <span class="text-sm">ماسنجر</span>
+                        </button>
+                    </div>
+                    <button class="cancel w-full py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800">إلغاء</button>
+                </div>
+            `;
+            
+            document.body.appendChild(shareDiv);
+            
+            // Add event listeners to buttons
+            shareDiv.querySelector('.whatsapp').addEventListener('click', () => {
+                window.location.href = intentUrls.whatsapp;
+                document.body.removeChild(shareDiv);
+            });
+            
+            shareDiv.querySelector('.telegram').addEventListener('click', () => {
+                window.location.href = intentUrls.telegram;
+                document.body.removeChild(shareDiv);
+            });
+            
+            shareDiv.querySelector('.messenger').addEventListener('click', () => {
+                window.location.href = intentUrls.facebook;
+                document.body.removeChild(shareDiv);
+            });
+            
+            shareDiv.querySelector('.cancel').addEventListener('click', () => {
+                document.body.removeChild(shareDiv);
+            });
+            
+            // Clean up the temporary URL
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+            }, 60000); // Revoke after 1 minute

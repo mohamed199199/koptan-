@@ -1,0 +1,1 @@
+                    remainingTime.textContent = `الوقت المتبقي: ${formatTime(secondsRemaining)}`;

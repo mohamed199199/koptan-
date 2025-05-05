@@ -1,0 +1,3 @@
+            console.log(`GPU acceleration ${hasGPU ? 'enabled' : 'disabled'}`);
+        });
+        
