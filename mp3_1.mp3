@@ -1,0 +1,6 @@
+            const demoFile = new File([new ArrayBuffer(10000)], 'example-audio.mp3', { type: 'audio/mpeg' });
+            originalAudio = demoFile;
+            displayFileInfo(demoFile);
+            
+            // Create a dummy audio duration
+            originalTime.textContent = '01:45';

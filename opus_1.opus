@@ -1,0 +1,7 @@
+            convertedAudio = new File([new ArrayBuffer(10000)], 'converted-voice.opus', { type: 'audio/opus' });
+            
+            // Update the UI
+            remainingTime.textContent = 'اكتمل التحويل!';
+            
+            // Enable converted audio player and action buttons
+            playConvertedBtn.disabled = false;
