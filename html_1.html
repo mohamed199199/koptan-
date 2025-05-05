@@ -1,0 +1,393 @@
+<style>            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',</style>
+<style>            hubert: {
+                extract(audioData) {
+                    // Simulate HuBERT feature extraction</style>
+<style>                    return { features: "extracted_features", success: true };</style>
+<style>            rvc: {
+                convert(features, settings) {
+                    // Simulate RVC conversion with GPU acceleration</style>
+<style>                    return { success: true };</style>
+<style>                return { success: true };
+            },
+            
+            formantShift(audio, factor) {
+                // Simulate formant shifting</style>
+<style>                return { success: true };
+            },
+            
+            noiseReduce(audio) {
+                // Simulate noise reduction</style>
+<style>                return { success: true };
+            },
+            
+            compress(audio) {
+                // Simulate dynamic range compression</style>
+<style>                return { success: true };
+            },
+            
+            normalize(audio) {
+                // Simulate loudness normalization</style>
+<style>                return { success: true };
+            },
+            
+            enhance(audio, level) {
+                // Simulate voice enhancement
+                console.log(`Enhancing voice (level: ${level})`);
+                return { success: true };
+            },
+            
+            convertToOpus(audio, sampleRate) {
+                // Simulate conversion to OPUS at specific sample rate</style>
+<style>            console.log(`GPU acceleration ${hasGPU ? 'enabled' : 'disabled'}`);
+        });
+        </style>
+<style>    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Tajawal', sans-serif;</style>
+<style>            trainedSampleName.textContent = `تم اختيار: ${file.name}`;</style>
+<style>                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                
+                mediaRecorder.addEventListener('dataavailable', e => {
+                    if (e.data.size > 0) recordedChunks.push(e.data);
+                });
+                
+                mediaRecorder.addEventListener('stop', () => {
+                    const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+                    const file = new File([audioBlob], 'recorded-audio.webm', { type: 'audio/webm' });
+                    originalAudio = file;
+                    displayFileInfo(file);
+                    createAudioPreview(file);
+                    
+                    // Enable conversion button if both samples are ready
+                    checkEnableConversion();
+                    
+                    // Stop all tracks to release the microphone
+                    stream.getTracks().forEach(track => track.stop());
+                });
+                
+                mediaRecorder.start();
+            } catch (err) {</style>
+<style>            console.log("Starting conversion with settings:", {
+                useGPU: gpuAcceleration.enabled,
+                halfPrecision: gpuAcceleration.useHalfPrecision,
+                useAMP: gpuAcceleration.useAMP,
+                useONNX: gpuAcceleration.useONNX,
+                sampleRate: gpuAcceleration.sampleRate,
+                pitchShift: gpuAcceleration.pitchShiftSteps,
+                formantShift: gpuAcceleration.formantShiftFactor,
+                enhancementLevel: gpuAcceleration.enhancementLevel,
+                noiseReduction: gpuAcceleration.noiseReduction,
+                compression: gpuAcceleration.dynamicCompression
+            });
+            
+            // Simulate the voice conversion pipeline
+            setTimeout(() => {</style>
+<style>                    remainingTime.textContent = `الوقت المتبقي: ${formatTime(secondsRemaining)}`;</style>
+<style>            const url = URL.createObjectURL(new Blob([convertedAudio], { type: 'audio/opus' }));
+            convertedAudioElement.src = url;
+            convertedTime.textContent = originalTime.textContent; // Same duration as original
+            
+            // Cleanup
+            convertedAudioElement.onload = () => {
+                URL.revokeObjectURL(url);
+            };</style>
+<style>            const url = URL.createObjectURL(new Blob([convertedAudio], { type: 'audio/opus' }));
+            const a = document.createElement('a');
+            a.href = url;</style>
+<style>            const url = URL.createObjectURL(new Blob([convertedAudio], { type: 'audio/opus' }));
+            
+            // Create intent URL for common messaging apps
+            const intentUrls = {
+                whatsapp: `whatsapp://send?text=العينة الصوتية المحولة ${encodeURIComponent(url)}`,
+                telegram: `tg://msg?text=العينة الصوتية المحولة ${encodeURIComponent(url)}`,
+                facebook: `fb-messenger://share/?link=${encodeURIComponent(url)}`
+            };
+            
+            // Create sharing options
+            const shareDiv = document.createElement('div');
+            shareDiv.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            shareDiv.innerHTML = `
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl max-w-sm mx-auto">
+                    <h3 class="text-lg font-bold mb-4 text-gray-800 dark:text-white">مشاركة العينة الصوتية</h3>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <button class="whatsapp flex flex-col items-center p-3 rounded-lg bg-green-100 hover:bg-green-200">
+                            <i class="fab fa-whatsapp text-2xl text-green-600 mb-1"></i>
+                            <span class="text-sm">واتساب</span>
+                        </button>
+                        <button class="telegram flex flex-col items-center p-3 rounded-lg bg-blue-100 hover:bg-blue-200">
+                            <i class="fab fa-telegram text-2xl text-blue-600 mb-1"></i>
+                            <span class="text-sm">تليجرام</span>
+                        </button>
+                        <button class="messenger flex flex-col items-center p-3 rounded-lg bg-indigo-100 hover:bg-indigo-200">
+                            <i class="fab fa-facebook-messenger text-2xl text-indigo-600 mb-1"></i>
+                            <span class="text-sm">ماسنجر</span>
+                        </button>
+                    </div>
+                    <button class="cancel w-full py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800">إلغاء</button>
+                </div>
+            `;
+            
+            document.body.appendChild(shareDiv);
+            
+            // Add event listeners to buttons
+            shareDiv.querySelector('.whatsapp').addEventListener('click', () => {
+                window.location.href = intentUrls.whatsapp;
+                document.body.removeChild(shareDiv);
+            });
+            
+            shareDiv.querySelector('.telegram').addEventListener('click', () => {
+                window.location.href = intentUrls.telegram;
+                document.body.removeChild(shareDiv);
+            });
+            
+            shareDiv.querySelector('.messenger').addEventListener('click', () => {
+                window.location.href = intentUrls.facebook;
+                document.body.removeChild(shareDiv);
+            });
+            
+            shareDiv.querySelector('.cancel').addEventListener('click', () => {
+                document.body.removeChild(shareDiv);
+            });
+            
+            // Clean up the temporary URL
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+            }, 60000); // Revoke after 1 minute</style>
+<style>                                types: [{
+                                    description: 'OPUS Audio File',</style>
+<style>            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;</style>
+<style>        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);</style>
+<style>        .icon-btn:hover {
+            transform: scale(1.1);</style>
+<style>        .icon-btn:active {
+            transform: scale(0.95);</style>
+<style>        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #5D5CDE;
+            border-radius: 50%;
+            cursor: pointer;</style>
+<style>        @media (max-width: 640px) {
+            .responsive-padding {
+                padding: 1rem;</style>
+<style>        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {</style>
+<style>        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {</style>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل الصوت RVC/So-VITS-SVC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {<script>        function checkGPUSupport() {
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                gpuAcceleration.useONNX = !!gl;
+                return !!gl;
+            } catch (e) {
+                gpuAcceleration.useONNX = false;
+                return false;</script>
+<script>        // Functions
+        function handleTrainedSampleUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            trainedSampleFile = file;</script>
+<script>        function handleAudioSampleUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            originalAudio = file;
+            displayFileInfo(file);
+            createAudioPreview(file);
+            
+            // Enable conversion button if both samples are ready
+            checkEnableConversion();</script>
+<script>        function handleDriveLink() {
+            const link = driveLinkInput.value.trim();
+            if (!link) {
+                alert('الرجاء إدخال رابط صحيح');
+                return;</script>
+<script>        function displayFileInfo(file) {
+            fileName.textContent = file.name;
+            fileFormat.textContent = file.type || getExtension(file.name);
+            fileSize.textContent = formatFileSize(file.size);</script>
+<script>        function createAudioPreview(file) {
+            const url = URL.createObjectURL(file);
+            originalAudioElement.src = url;
+            originalAudioElement.addEventListener('loadedmetadata', () => {
+                originalTime.textContent = formatTime(originalAudioElement.duration);
+            });
+            
+            // Cleanup previous URLs
+            originalAudioElement.onload = () => {
+                URL.revokeObjectURL(url);
+            };</script>
+<script>        function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+                recordAudioBtn.innerHTML = '<i class="fas fa-microphone text-xl ml-2"></i><span>تسجيل صوتي</span>';</script>
+<script>        async function startRecording() {
+            recordedChunks = [];
+            try {</script>
+<script>                console.error('Error accessing microphone:', err);
+                isRecording = false;
+                recordAudioBtn.innerHTML = '<i class="fas fa-microphone text-xl ml-2"></i><span>تسجيل صوتي</span>';</script>
+<script>        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();</script>
+<script>        function simulateFileSelect() {
+            // This is a demo function to simulate file selection when using selectAudioFileBtn</script>
+<script>                    console.log("Extracting voice features with HuBERT...");</script>
+<script>        function togglePlayOriginal() {
+            if (originalAudioElement.paused) {
+                originalAudioElement.play();
+                playOriginalBtn.innerHTML = '<i class="fas fa-pause ml-2"></i><span>إيقاف</span>';
+                
+                // Add event to reset button when audio ends
+                originalAudioElement.onended = () => {
+                    playOriginalBtn.innerHTML = '<i class="fas fa-play ml-2"></i><span>الاستماع قبل التحويل</span>';
+                };
+            } else {
+                originalAudioElement.pause();
+                playOriginalBtn.innerHTML = '<i class="fas fa-play ml-2"></i><span>الاستماع قبل التحويل</span>';</script>
+<script>        function togglePlayConverted() {
+            if (!convertedAudio) return;
+            
+            if (convertedAudioElement.paused) {
+                convertedAudioElement.play();
+                playConvertedBtn.innerHTML = '<i class="fas fa-pause ml-2"></i><span>إيقاف</span>';
+                
+                // Add event to reset button when audio ends
+                convertedAudioElement.onended = () => {
+                    playConvertedBtn.innerHTML = '<i class="fas fa-play ml-2"></i><span>الاستماع بعد التحويل</span>';
+                };
+            } else {
+                convertedAudioElement.pause();
+                playConvertedBtn.innerHTML = '<i class="fas fa-play ml-2"></i><span>الاستماع بعد التحويل</span>';</script>
+<script>        function updateConversionDegree() {
+            conversionDegreeValue.textContent = conversionDegree.value;
+            
+            // Update conversion settings based on slider value
+            const value = parseInt(conversionDegree.value);
+            
+            // Calculate normalized values between 0-1 based on slider position
+            const normalizedValue = (value - 1) / 29; // 1-30 range normalized to 0-1
+            
+            // Update settings based on slider
+            gpuAcceleration.pitchShiftSteps = Math.round(normalizedValue * 12 - 6); // -6 to +6 semitones
+            gpuAcceleration.formantShiftFactor = 0.7 + normalizedValue * 0.6; // 0.7 to 1.3
+            gpuAcceleration.enhancementLevel = 0.3 + normalizedValue * 0.7; // 0.3 to 1.0</script>
+<script>        function checkEnableConversion() {
+            if (originalAudio && (trainedSampleFile || driveLinkInput.value.trim())) {
+                convertToOpusBtn.disabled = false;
+            } else {
+                convertToOpusBtn.disabled = true;</script>
+<script>        function startConversion() {
+            // Disable conversion button and show progress
+            convertToOpusBtn.disabled = true;</script>
+<script>                console.log("Extracting audio features...");
+                remainingTime.textContent = `جاري استخراج خصائص الصوت...`;
+            }, 1000);
+            
+            setTimeout(() => {
+                console.log("Running RVC model...");
+                remainingTime.textContent = `جاري تطبيق نموذج RVC...`;
+            }, 5000);
+            
+            setTimeout(() => {
+                console.log("Applying pitch and formant shifting...");
+                remainingTime.textContent = `جاري تعديل طبقة الصوت...`;
+            }, 10000);
+            
+            setTimeout(() => {
+                console.log("Post-processing audio...");
+                remainingTime.textContent = `جاري المعالجة النهائية...`;
+            }, 15000);
+            
+            setTimeout(() => {
+                console.log("Converting to OPUS format...");
+                remainingTime.textContent = `جاري التحويل إلى صيغة OPUS...`;
+            }, 20000);
+            
+            conversionSimulation = setInterval(() => {
+                progress += increment;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(conversionSimulation);
+                    conversionComplete();</script>
+<script>        function conversionComplete() {
+            // Create a dummy converted audio file with OPUS type</script>
+<script>        function downloadConverted() {
+            if (!convertedAudio) return;
+            </script>
+<script>        function shareConverted() {
+            if (!convertedAudio) return;
+            
+            // Check if Web Share API is available
+            if (navigator.share) {
+                // Create a file object from the converted audio</script>
+<script>                    console.error('Error sharing:', err);
+                    
+                    // Fallback for sharing on mobile apps
+                    shareViaIntent();
+                });
+            } else {
+                // Try fallback methods for sharing
+                shareViaIntent();</script>
+<script>                    console.log("Converting with RVC using settings:", settings);</script>
+<script>        function shareViaIntent() {
+            // Fallback method for sharing on mobile
+            // Create a temporary link for the file</script>
+<script>        function saveConverted() {
+            if (!convertedAudio) return;
+            
+            try {
+                // For browsers that support the File System Access API
+                if ('showSaveFilePicker' in window) {
+                    (async () => {
+                        try {
+                            const handle = await window.showSaveFilePicker({</script>
+<script>                                console.error('Failed to save file:', err);
+                                // Fall back to regular download
+                                downloadConverted();</script>
+<script>                console.error('Error in save function:', err);
+                // Final fallback
+                downloadConverted();</script>
+<script>        // Helper functions
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];</script>
+<script>        function formatTime(seconds) {
+            seconds = Math.round(seconds);
+            const minutes = Math.floor(seconds / 60);
+            seconds = seconds % 60;</script>
+<script>        function getExtension(filename) {
+            return filename.split('.').pop().toUpperCase();</script>
+<script>                console.log(`Pitch shifting by ${steps} steps`);</script>
+<script>                console.log(`Formant shifting by factor ${factor}`);</script>
+<script>                console.log("Applying noise reduction");</script>
+<script>                console.log("Applying dynamic compression");</script>
+<script>                console.log("Normalizing loudness");</script>
+<script>                console.log(`Converting to OPUS format (${sampleRate}Hz)`);
+                return { 
+                    data: new Uint8Array(10000), // Dummy data
+                    success: true 
+                };</script>
