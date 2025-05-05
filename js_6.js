@@ -1,0 +1,1 @@
+                console.log("Applying noise reduction");
